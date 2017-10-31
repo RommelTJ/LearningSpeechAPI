@@ -10,6 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    enum Instruction: String {
+        case left
+        case right
+        case up
+        case down
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
