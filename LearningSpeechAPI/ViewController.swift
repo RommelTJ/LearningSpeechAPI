@@ -46,5 +46,26 @@ class ViewController: UIViewController {
         }
     }
     
+    func moveNinja(for instruction: Instruction) {
+        let movement: CGVector
+        
+        // The distance to move in any direction
+        let distance = 100
+        
+        switch instruction {
+        case .left:
+            movement = CGVector(dx: -distance, dy: 0)
+        case .right:
+            movement = CGVector(dx: distance, dy: 0)
+        case .down:
+            movement = CGVector(dx: 0, dy: distance)
+        case .up:
+            movement = CGVector(dx: 0, dy: -distance)
+        }
+        
+        self.ninja.center.x += movement.dx
+        self.ninja.center.y += movement.dy
+    }
+    
 }
 
