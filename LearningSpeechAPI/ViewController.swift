@@ -22,7 +22,42 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Position ninja
+        ninja.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        ninja.center = view.center
+        view.addSubview(ninja)
+        
+        // Set up closure executed when final transcription is available to us
+        transcriber.onTranscriptionCompletion = {
+            [unowned self]
+            transcription in
+            
+            // Parse the string into individual Instructions
+            let instructions = transcription.components(separatedBy: " ").flatMap {
+                return Instruction(rawValue: $0)
+            }
+            
+            if instructions.count == 0 {
+                return
+            }
+            
+            // So we can see the individual instructions more clearly, we'll animate each one.
+            let individualInstructionAnimationDuration = 0.5
+            let totalAnimationDuration = Double(instructions.count) * individualInstructionAnimationDuration
+            let relativeIndividualDuration = 1 / Double(instructions.count)
+            
+            UIView.animateKeyframes(withDuration: totalAnimationDuration, delay: 0, options: [], animations: {
+                for (index, instruction) in instructions.enumerated() {
+                    
+                    UIView.addKeyframe(withRelativeStartTime: relativeIndividualDuration * Double(index),
+                                       relativeDuration: relativeIndividualDuration) {
+                                        self.moveNinja(for: instruction)
+                                        self.view.layoutIfNeeded()
+                    }
+                }
+            })
+        }
     }
 
     @IBAction func directionsButtonPressed(_ sender: UIButton) {
