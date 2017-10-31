@@ -1,5 +1,5 @@
 //
-//  SpeechTrancriber.swift
+//  SpeechTranscriber.swift
 //  LearningSpeechAPI
 //
 //  Created by Rommel Rico on 10/30/17.
@@ -8,7 +8,7 @@
 
 import Speech
 
-class SpeechTrancriber {
+class SpeechTranscriber {
     
     private let speechRecognizer = SFSpeechRecognizer()
     private let audioEngine = AVAudioEngine()
