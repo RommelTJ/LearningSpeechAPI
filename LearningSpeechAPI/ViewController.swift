@@ -69,3 +69,16 @@ class ViewController: UIViewController {
     
 }
 
+extension UIButton {
+    
+    func setReadyToRecordState() {
+        setTitle("Record Directions", for: .normal)
+        backgroundColor = .green
+    }
+    
+    func setIsRecordingState() {
+        setTitle("End Recording", for: .normal)
+        backgroundColor = .red
+    }
+}
+
