@@ -31,7 +31,19 @@ class ViewController: UIViewController {
     }
 
     @IBAction func directionsButtonPressed(_ sender: UIButton) {
-        // TODO - Implement me.
+        if !transcriber.isTranscribing {
+            // Not currently listening for directions, so let's start!
+            transcriber.start()
+            // Update button appearance
+            sender.setTitle("End Recording", for: .normal)
+            sender.backgroundColor = .red
+        } else {
+            // Already listening, so let's stop the recording
+            transcriber.stop()
+            // Update button appearance
+            sender.setTitle("Record Directions", for: .normal)
+            sender.backgroundColor = .green
+        }
     }
     
 }
