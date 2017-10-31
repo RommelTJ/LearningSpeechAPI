@@ -16,6 +16,9 @@ class ViewController: UIViewController {
         case up
         case down
     }
+
+    let transcriber = SpeechTrancriber()
+    let ninja = UIImageView(image: #imageLiteral(resourceName: "Ninja"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
